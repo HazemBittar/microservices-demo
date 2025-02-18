@@ -14,10 +14,8 @@
 
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
-
-patchesStrategicMerge:
-  # frontend - enable CYMBAL_BRANDING
-  - |-
+patches:
+- patch: |-
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -26,7 +24,7 @@ patchesStrategicMerge:
       template:
         spec:
           containers:
-            - name: server
-              env:
-              - name: CYMBAL_BRANDING
-                value: "true"
+          - name: server
+            env:
+            - name: CYMBAL_BRANDING
+              value: "true"
